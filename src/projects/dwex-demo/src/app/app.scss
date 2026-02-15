@@ -1,0 +1,16 @@
+.light-only {
+  display: none;
+}
+
+.dark-only {
+  display: block;
+}
+
+html.light-theme {
+  .light-only {
+    display: block;
+  }
+  .dark-only {
+    display: none;
+  }
+}

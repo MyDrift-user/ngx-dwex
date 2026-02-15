@@ -1,0 +1,15 @@
+<dwex-shell
+  [workspaces]="workspaces()"
+  [settingsNavItems]="settingsNavItems()"
+  [enableTabs]="true"
+  [profileMode]="true"
+  [userName]="'Jane Cooper'"
+  [userEmail]="'jane@example.com'"
+  (signOut)="onSignOut()">
+
+  <div shell-branding>
+    <img src="logo-light.png" alt="Logo" class="toolbar-logo light-only">
+    <img src="logo.png" alt="Logo" class="toolbar-logo dark-only">
+  </div>
+
+</dwex-shell>

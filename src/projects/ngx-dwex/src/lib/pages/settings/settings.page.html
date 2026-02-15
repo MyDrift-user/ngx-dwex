@@ -1,0 +1,76 @@
+
+<dwex-page-title title="Settings" subtitle="Customize appearance and preferences" />
+<div class="settings-content">
+  <div class="setting-section">
+    <h3 class="setting-label">Theme</h3>
+    <div class="theme-options">
+      <button
+        class="theme-option"
+        [class.active]="themeService.mode() === 'light'"
+        (click)="setThemeMode('light')">
+        <mat-icon>light_mode</mat-icon>
+        <span>Light</span>
+      </button>
+      <button
+        class="theme-option"
+        [class.active]="themeService.mode() === 'dark'"
+        (click)="setThemeMode('dark')">
+        <mat-icon>dark_mode</mat-icon>
+        <span>Dark</span>
+      </button>
+      <button
+        class="theme-option"
+        [class.active]="themeService.mode() === 'system'"
+        (click)="setThemeMode('system')">
+        <mat-icon>brightness_auto</mat-icon>
+        <span>System</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="setting-section">
+    <h3 class="setting-label">Color</h3>
+    <div class="color-options">
+      <button
+        class="color-swatch"
+        style="--swatch-color: #7c3aed"
+        [class.active]="themeService.color() === 'violet'"
+        (click)="setThemeColor('violet')"
+        aria-label="Violet">
+        @if (themeService.color() === 'violet') { <mat-icon>check</mat-icon> }
+      </button>
+      <button
+        class="color-swatch"
+        style="--swatch-color: #2563eb"
+        [class.active]="themeService.color() === 'blue'"
+        (click)="setThemeColor('blue')"
+        aria-label="Blue">
+        @if (themeService.color() === 'blue') { <mat-icon>check</mat-icon> }
+      </button>
+      <button
+        class="color-swatch"
+        style="--swatch-color: #059669"
+        [class.active]="themeService.color() === 'green'"
+        (click)="setThemeColor('green')"
+        aria-label="Green">
+        @if (themeService.color() === 'green') { <mat-icon>check</mat-icon> }
+      </button>
+      <button
+        class="color-swatch"
+        style="--swatch-color: #dc2626"
+        [class.active]="themeService.color() === 'red'"
+        (click)="setThemeColor('red')"
+        aria-label="Red">
+        @if (themeService.color() === 'red') { <mat-icon>check</mat-icon> }
+      </button>
+      <button
+        class="color-swatch"
+        style="--swatch-color: #ea580c"
+        [class.active]="themeService.color() === 'orange'"
+        (click)="setThemeColor('orange')"
+        aria-label="Orange">
+        @if (themeService.color() === 'orange') { <mat-icon>check</mat-icon> }
+      </button>
+    </div>
+  </div>
+</div>

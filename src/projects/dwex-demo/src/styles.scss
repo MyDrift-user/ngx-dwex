@@ -1,0 +1,17 @@
+// Global expressive styles for mat-card in the demo app
+mat-card {
+  border-radius: var(--dwex-corner-md, 16px) !important;
+  transition: background-color var(--dwex-duration-medium, 350ms) var(--dwex-easing-standard, cubic-bezier(0.2, 0, 0, 1)),
+              box-shadow var(--dwex-duration-short, 200ms) var(--dwex-easing-standard, cubic-bezier(0.2, 0, 0, 1));
+}
+
+// Consistent page content spacing
+.page-content {
+  padding: 8px 24px 24px;
+}
+
+// Expressive selection colors
+::selection {
+  background-color: color-mix(in srgb, var(--mat-sys-primary) 30%, transparent);
+  color: var(--mat-sys-on-surface);
+}

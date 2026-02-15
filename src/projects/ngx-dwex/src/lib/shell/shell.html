@@ -1,0 +1,283 @@
+<!-- Toolbar -->
+<div class="shell-toolbar">
+  <div class="toolbar-left">
+    @if (hasMultipleNavItems()) {
+      <div class="toolbar-menu-wrapper" [style.width]="toolbarMenuWidth()">
+        <button mat-icon-button (click)="toggleSidenav()" aria-label="Toggle navigation">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+    } @else {
+      <div style="width: var(--dwex-content-padding, 10px)"></div>
+    }
+    <ng-content select="[shell-branding]" />
+  </div>
+
+  <div class="toolbar-right">
+    @if (!isMobile()) {
+      @if (visibleWorkspaces().length > 1) {
+        @for (ws of visibleWorkspaces(); track ws.id) {
+          <button
+            mat-button
+            [class.active]="activeWorkspaceId() === ws.id && !isSettingsActive()"
+            (click)="switchWorkspace(ws.id)">
+            <mat-icon>{{ ws.icon }}</mat-icon>
+            {{ ws.label }}
+          </button>
+        }
+      }
+    }
+
+    @if (!isMobile() || visibleWorkspaces().length === 1) {
+      @if (profileMode()) {
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="profileMenu"
+          class="profile-button"
+          aria-label="User profile">
+          @if (userAvatar()) {
+            <img [src]="userAvatar()" alt="Profile" class="profile-avatar" />
+          } @else {
+            <mat-icon>account_circle</mat-icon>
+          }
+        </button>
+
+        <mat-menu #profileMenu="matMenu" xPosition="before">
+          @if (userName() || userEmail()) {
+            <div class="profile-menu-header">
+              @if (userAvatar()) {
+                <img [src]="userAvatar()" alt="Profile" class="profile-menu-avatar" />
+              } @else {
+                <div class="profile-menu-icon-wrapper">
+                  <mat-icon class="profile-menu-icon">person</mat-icon>
+                </div>
+              }
+              <div class="profile-menu-info">
+                @if (userName()) { <span class="profile-menu-name">{{ userName() }}</span> }
+                @if (userEmail()) { <span class="profile-menu-email">{{ userEmail() }}</span> }
+              </div>
+            </div>
+            <mat-divider />
+          }
+          <button mat-menu-item (click)="navigateToProfile()">
+            <mat-icon>person</mat-icon>
+            <span>Profile</span>
+          </button>
+          <button mat-menu-item (click)="toggleSettings()">
+            <mat-icon>settings</mat-icon>
+            <span>Settings</span>
+          </button>
+          <mat-divider />
+          <button mat-menu-item (click)="handleSignOut()">
+            <mat-icon>logout</mat-icon>
+            <span>Sign out</span>
+          </button>
+        </mat-menu>
+      } @else {
+        <button
+          mat-icon-button
+          [class.active]="isSettingsActive()"
+          (click)="toggleSettings()"
+          aria-label="Settings">
+          <mat-icon>settings</mat-icon>
+        </button>
+      }
+    }
+
+    <ng-content select="[shell-actions]" />
+  </div>
+</div>
+
+<!-- Nav item context menu for split view -->
+<div class="nav-context-anchor"
+  [style.left]="navContextPosition().x"
+  [style.top]="navContextPosition().y"
+  [matMenuTriggerFor]="navSplitMenu"
+  #navContextTrigger="matMenuTrigger">
+</div>
+<mat-menu #navSplitMenu="matMenu">
+  <button mat-menu-item (click)="openInSplit('vertical')">
+    <mat-icon>vertical_split</mat-icon>
+    <span>Open in split view</span>
+  </button>
+  <button mat-menu-item (click)="openInSplit('horizontal')">
+    <mat-icon>horizontal_split</mat-icon>
+    <span>Open in stacked view</span>
+  </button>
+</mat-menu>
+
+<!-- Body: sidenav + content -->
+<div class="shell-body">
+  @if (isMobile() && mobileNavOpen()) {
+    <div @fadeIn class="mobile-backdrop" (click)="closeMobileNav()"></div>
+    <div @slideIn class="mobile-sidenav">
+      <nav class="sidenav-nav">
+        @for (item of currentNavItems(); track item.label) {
+          @if (item.section) {
+            <div class="nav-section" [class.has-divider]="item.divider">{{ item.label }}</div>
+          } @else if (item.divider) {
+            <mat-divider />
+          }
+          @if (!item.section) {
+            <button
+              mat-button
+              class="nav-button"
+              [routerLink]="item.route"
+              [class.active]="isActive(item.route)"
+              (click)="closeMobileNav()">
+              <mat-icon>{{ item.icon }}</mat-icon>
+              <span>{{ item.label }}</span>
+            </button>
+          }
+        }
+      </nav>
+    </div>
+  }
+
+  <div class="shell-sidenav" [style.width]="sidenavWidth()">
+    <nav class="sidenav-nav">
+      @for (item of currentNavItems(); track item.label) {
+        @if (item.section && !isCompact()) {
+          <div class="nav-section" [class.has-divider]="item.divider">{{ item.label }}</div>
+        } @else if (item.divider && !isCompact()) {
+          <mat-divider />
+        }
+        @if (!item.section) {
+          @if (isCompact()) {
+            <button
+              mat-icon-button
+              [routerLink]="item.route"
+              [class.active]="isActive(item.route)"
+              [attr.aria-label]="item.label"
+              (click)="onNavItemClick($event, item)"
+              (contextmenu)="onNavContextMenu($event, item, navContextTrigger)">
+              <mat-icon>{{ item.icon }}</mat-icon>
+            </button>
+          } @else {
+            <button
+              mat-button
+              class="nav-button"
+              [routerLink]="item.route"
+              [class.active]="isActive(item.route)"
+              (click)="onNavItemClick($event, item)"
+              (contextmenu)="onNavContextMenu($event, item, navContextTrigger)">
+              <mat-icon>{{ item.icon }}</mat-icon>
+              <span>{{ item.label }}</span>
+            </button>
+          }
+        }
+      }
+    </nav>
+  </div>
+
+  <div class="shell-content"
+    [class.sidenav-collapsed]="sidenavWidth() === '0px' || isMobile()"
+    [class.has-bottom-nav]="isMobile() && visibleWorkspaces().length > 1">
+    @if (splitViewService.isActive()) {
+      <div class="split-container"
+        [class.split-vertical]="splitViewService.orientation() === 'vertical'"
+        [class.split-horizontal]="splitViewService.orientation() === 'horizontal'">
+        <mat-card class="content-card split-pane primary-pane"
+          [style.flex-basis]="splitViewService.splitRatio() + '%'">
+          @if (tabService.enabled() && tabService.tabs().length > 0) {
+            <dwex-tab-bar />
+          }
+          <div class="content-scroll" [@routeTransition]="routeAnimState()">
+            <router-outlet />
+          </div>
+        </mat-card>
+
+        <div class="split-divider"
+          [class.split-divider-vertical]="splitViewService.orientation() === 'vertical'"
+          [class.split-divider-horizontal]="splitViewService.orientation() === 'horizontal'"
+          (mousedown)="onDividerMouseDown($event)"
+          (touchstart)="onDividerTouchStart($event)"
+          (dblclick)="onDividerDblClick()">
+          <div class="split-divider-handle">
+            <mat-icon>drag_indicator</mat-icon>
+          </div>
+        </div>
+
+        <mat-card class="content-card split-pane secondary-pane"
+          [style.flex-basis]="(100 - splitViewService.splitRatio()) + '%'">
+          <div class="split-pane-header">
+            <span class="split-pane-title">{{ splitViewService.secondaryTitle() }}</span>
+            <div class="split-pane-actions">
+              <button mat-icon-button
+                (click)="splitViewService.toggleOrientation()"
+                [matTooltip]="splitViewService.orientation() === 'vertical' ? 'Stack vertically' : 'Split side by side'"
+                aria-label="Toggle split orientation">
+                <mat-icon>{{ splitViewService.orientation() === 'vertical' ? 'horizontal_split' : 'vertical_split' }}</mat-icon>
+              </button>
+              <button mat-icon-button
+                (click)="splitViewService.close()"
+                matTooltip="Close split"
+                aria-label="Close split pane">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+          </div>
+          <div class="content-scroll">
+            <ng-container *ngComponentOutlet="splitViewService.secondaryComponent()" />
+          </div>
+        </mat-card>
+      </div>
+    } @else {
+      <mat-card class="content-card">
+        @if (tabService.enabled() && tabService.tabs().length > 0) {
+          <dwex-tab-bar />
+        }
+        <div class="content-scroll" [@routeTransition]="routeAnimState()">
+          <router-outlet />
+        </div>
+      </mat-card>
+    }
+  </div>
+</div>
+
+@if (isMobile() && visibleWorkspaces().length > 1) {
+  <nav @slideUp class="mobile-bottom-nav" role="navigation" aria-label="Workspaces">
+    @for (ws of visibleWorkspaces(); track ws.id) {
+      <button
+        (click)="switchWorkspace(ws.id)"
+        [class.active]="activeWorkspaceId() === ws.id && !isSettingsActive()"
+        class="mobile-nav-item"
+        [attr.aria-label]="ws.label"
+        [attr.aria-current]="activeWorkspaceId() === ws.id && !isSettingsActive() ? 'page' : null">
+        <span class="nav-indicator">
+          <mat-icon aria-hidden="true">{{ ws.icon }}</mat-icon>
+        </span>
+        <span class="mobile-nav-label">{{ ws.label }}</span>
+      </button>
+    }
+    @if (profileMode()) {
+      <button
+        (click)="navigateToProfile()"
+        [class.active]="isActive(profileRoute())"
+        class="mobile-nav-item"
+        aria-label="Profile"
+        [attr.aria-current]="isActive(profileRoute()) ? 'page' : null">
+        <span class="nav-indicator">
+          @if (userAvatar()) {
+            <img [src]="userAvatar()" alt="Profile" class="mobile-profile-avatar" />
+          } @else {
+            <mat-icon aria-hidden="true">account_circle</mat-icon>
+          }
+        </span>
+        <span class="mobile-nav-label">Profile</span>
+      </button>
+    } @else {
+      <button
+        (click)="toggleSettings()"
+        [class.active]="isSettingsActive()"
+        class="mobile-nav-item"
+        aria-label="Settings"
+        [attr.aria-current]="isSettingsActive() ? 'page' : null">
+        <span class="nav-indicator">
+          <mat-icon aria-hidden="true">settings</mat-icon>
+        </span>
+        <span class="mobile-nav-label">Settings</span>
+      </button>
+    }
+  </nav>
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Dwex Demo",
+  "short_name": "ngx-dwex",
+  "description": "Dwex Angular UI Shell Library Demo Application",
+  "theme_color": "#6366f1",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["productivity", "utilities"],
+  "screenshots": []
+}

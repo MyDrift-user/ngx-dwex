@@ -1,0 +1,23 @@
+<svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" aria-label="Dwex liquid glass logo">
+  <defs>
+    <linearGradient id="base" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#dfe0ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b6bff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="glass" x1="0%" y1="20%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#60a5fa;stop-opacity:0.7" />
+    </linearGradient>
+    <radialGradient id="highlight" cx="50%" cy="20%" r="70%">
+      <stop offset="30%" style="stop-color:white;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:white;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Soft rounded app background -->
+  <rect x="10" y="10" width="200" height="200" rx="45" fill="url(#base)" />
+  <rect x="28" y="28" width="164" height="164" rx="32" fill="rgba(255,255,255,0.14)" />
+
+  <!-- Simple symbol (centered diamond, enlarged) -->
+  <path d="M110 70 L150 110 L110 150 L70 110 Z" fill="white" opacity="0.82" />
+</svg>
