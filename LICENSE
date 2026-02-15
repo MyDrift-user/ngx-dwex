@@ -1,21 +1,63 @@
-MIT License
+# NGX-DWEX Attribution License
 
-Copyright (c) 2026 MyDrift
+## Copyright Notice
+Copyright © 2026 MyDrift. All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+## Terms and Conditions
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this Shell and associated documentation files, to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Shell, subject to the following conditions:
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+### 1. Attribution Requirement
+**MANDATORY**: Any use, distribution, modification, or derivative work of this Shell MUST include a clear, visible attribution to the original creator:
+
+- **In source code**: Include a header comment in the main application files or in a prominent location stating:
+  ```
+  This project uses Dwex
+  Created by MyDrift (https://github.com/mydrift-user/ngx-dwex)
+  ```
+
+- **In compiled applications**: Include a visible credit in the application's UI (e.g., in an "About" section, footer, or settings):
+  ```
+  Built with Dwex by MyDrift
+  ```
+
+- **In public repositories**: Add the following to your README.md:
+  ```
+  This project is based on [Dwex](https://github.com/mydrift-user/ngx-dwex) by [MyDrift](https://github.com/mydrift-user)
+  ```
+
+- **In documentation**: If you create documentation, mention that the Shell is based on Dwex.
+
+### 2. Citation Requirement
+When referencing this Shell in academic work, presentations, or technical documentation, you MUST cite:
+
+```
+Dwex - A Modern Angular Shell
+Author: MyDrift
+Repository: https://github.com/mydrift-user/ngx-dwex
+```
+
+### 3. Derivative Works
+If you create derivative works, modifications, or significant extensions of this Shell:
+- You MUST maintain all original copyright notices and attribution
+- You MUST clearly indicate what modifications you have made
+- You MUST not remove or obscure the original attribution
+
+### 4. License Propagation
+If you distribute this Shell or any derivative works, you MUST include this license with your distribution and ensure all recipients are bound by these same terms.
+
+### 5. Disclaimer
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+### 6. Enforcement
+Failure to comply with the attribution and citation requirements is a violation of this license. Users who do not provide proper attribution may lose their right to use this Shell.
+
+---
+
+**Summary**: You are free to use, modify, and distribute this Shell, but you MUST always give credit to MyDrift as the original creator. This attribution requirement cannot be waived or removed.
+
+For more information or to request exceptions, contact the original author at [Dwex](https://github.com/mydrift-user)
+
+---
+
+Last Updated: 2026
