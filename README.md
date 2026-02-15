@@ -9,7 +9,6 @@
 </p>
 
 <p align="center">
-  <img src="https://badgetrack.pianonic.ch/badge/ngx-dwex?style=flat-square" alt="visits">
   <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square" alt="License: MIT">
   </a>
