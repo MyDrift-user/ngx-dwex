@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="logo.svg" alt="Dwex Logo" width="200" height="200">
+  <img src="public/logo.svg" alt="Dwex Logo" width="200" height="200">
 </p>
 
 <h1 align="center">Dwex</h1>
@@ -23,8 +23,6 @@
 - **📑 Tab System** — Browser-style tabs with pin, reorder (drag & drop), and context menu actions
 - **↔️ Split View** — Side-by-side or stacked pane layout with resizable divider
 - **👤 Profile Mode** — Built-in profile menu with avatar, name, email, and sign-out
-- **⌨️ Keyboard Shortcuts** — Global shortcut registration service
-- **📱 PWA Support** — Offline detection and service worker update management
 - **📐 Responsive** — Adaptive layout with mobile bottom nav, collapsible sidebar, and three-state desktop sidenav
 - **⚙️ Settings Pages** — Pre-built Appearance, Account, Notifications, Privacy, and Advanced pages
 
