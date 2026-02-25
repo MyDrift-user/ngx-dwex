@@ -1,6 +1,6 @@
 {
   "name": "@mydrift/ngx-dwex",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Angular UI shell library with Material 3 theming, workspace navigation, tabs, profile mode, and responsive layout",
   "keywords": [
     "angular",
